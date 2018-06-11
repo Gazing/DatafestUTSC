@@ -1,0 +1,87 @@
+doctype html
+head
+	meta(charset='utf-8')
+	title Datafest prototype
+	link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet' type='text/css')
+	link(href='styles/main.css' rel='stylesheet' type='text/css')
+	link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700,800' rel='stylesheet')
+#datafest-nav.banner.container-fluid
+	.logo
+		| DataFest @ UTSC
+	ul.nav.navbar-right
+		li
+			a(href='/#about') About
+		li
+			a(href='/#sponsors') Sponsors
+		li
+			a(href='/#schedule') Schedule
+		li.dropdown
+			a#navbarDropdown.dropdown-toggle(href='' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+				| Past Events
+			.dropdown-menu(aria-labelledby='navbarDropdown')
+				each pastEvent in pastEvents
+					a.dropdown-item(href="/past-events/"+pastEvent.title.replace(" ", "-"))=pastEvent.title
+section.section1.splash
+	.bg-wrapper
+		#splash-bg.splash-bg
+
+	.register-wrapper.card.container
+		div.form-header Register to be a part of ASA DataFest 2019
+		form.registration-form(method="post")
+			div.animated-form.col-md-4
+				
+				input.form-input-basic(type="text" name="teamName")
+				label.animated-form-label Team Name
+			div 
+				.form-label Team Member #1
+				div.form-row
+					div.animated-form.col-md-3
+						input.form-input-basic(type="text" name="teamMember1")
+						label.animated-form-label First Name
+					div.animated-form.col-md-3
+						input.form-input-basic(type="text" name="teamMember1")
+						label.animated-form-label Last Name
+
+					div.animated-form.col-md-2
+						input.form-input-basic(type="number" min=1 name="teamMember1")
+						label.animated-form-label Year of Study
+					div.animated-form.col-md-3
+						input.form-input-basic(type="text" name="teamMember1")
+						label.animated-form-label Program
+			div
+				.form-label Team Member #2
+				div.form-row
+					div.animated-form.col-md-3
+						input.form-input-basic(type="text" name="teamMember1")
+						label.animated-form-label First Name
+					div.animated-form.col-md-3
+						input.form-input-basic(type="text" name="teamMember1")
+						label.animated-form-label Last Name
+					div.animated-form.col-md-2
+						input.form-input-basic(type="number" min=1 name="teamMember1")
+						label.animated-form-label Year of Study
+					div.animated-form.col-md-3
+						input.form-input-basic(type="text" name="teamMember1")
+						label.animated-form-label Program
+			div
+				.form-label Team Member #3
+				div.form-row
+					div.animated-form.col-md-3
+						input.form-input-basic(type="text" name="teamMember1")
+						label.animated-form-label First Name
+					div.animated-form.col-md-3
+						input.form-input-basic(type="text" name="teamMember1")
+						label.animated-form-label Last Name
+					div.animated-form.col-md-2
+						input.form-input-basic(type="number" min=1 name="teamMember1")
+						label.animated-form-label Year of Study
+					div.animated-form.col-md-3
+						input.form-input-basic(type="text" name="teamMember1")
+						label.animated-form-label Program
+			div
+				input(type="submit")
+				
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+script(src='https://unpkg.com/popper.js/dist/umd/popper.min.js')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js')
+script(src='js/datafest.js')

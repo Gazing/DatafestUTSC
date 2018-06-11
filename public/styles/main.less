@@ -1,0 +1,377 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  z-index: 5;
+  position: relative;
+}
+
+body {
+
+
+}
+
+.splash {
+  background-color: #0D1F2D;
+  height: 100vh;
+
+}
+
+.splash-bg {
+  content: "";
+  position: relative;
+  background: url("bgtest_1.png") no-repeat;
+  width: 100vw;
+  height: 100vw;
+  background-size: cover;
+  background-position: center;
+
+  z-index: 1;
+}
+
+.bg-wrapper {
+  position: absolute;
+  overflow: hidden;
+  width: calc(~"100vw - 17px");
+  height: calc(~'100vh - 30%');
+  top: 30%;
+}
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  padding: 15px;
+  position: fixed;
+  z-index: 999;
+  transition: 0.2s linear all;
+}
+
+.banner-colored {
+  background-color: #546A7B;
+}
+
+.banner .logo {
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 38px;
+  cursor: pointer;
+}
+
+.nav>li>a {
+  color: #fff;
+  padding: 10px 14px;
+  transition: all 0.2s linear;
+
+  font-size: 17px;
+}
+
+.nav>li {
+  line-height: 40px;
+  margin: 0 7px;
+}
+
+.nav>li>a:hover {
+  color: #FAE1DF;
+}
+
+.nav>li>a::before {
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: all 0.2s linear;
+  border-bottom: 2px solid transparent;
+  content: '';
+  position: absolute;
+}
+
+.nav-active {
+  color: #FAE1DF !important;
+}
+
+.nav-active::before {
+  width: 100% !important;
+  border-bottom: 2px solid #FAE1DF !important;
+}
+
+a, a:focus, a:hover {
+  text-transform: none;
+  text-decoration: none;
+}
+
+.section2 {
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.splash-text {
+  position: relative;
+  background-color: transparent;
+  width: max-content;
+  height: max-content;
+  margin: auto;
+  top: 35%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.asa-logo {
+  background: url("datafest_logo5.png") no-repeat;
+  background-size: contain;
+  width: 530px;
+  height: 180px;
+
+}
+
+.splash-text .datafest-date {
+  color: #fff;
+  font-size: 17px;
+  text-align: center;
+  border-top: 5px solid #fff;
+  padding: 10px;
+}
+
+.apply-button {
+  background-color: #E63946;
+  width: 180px;
+  text-align: center;
+  border: 1px solid #d62b36;
+  transition: all 0.2s linear;
+  color :#fff;
+  line-height: 35px;
+  margin: 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 0;
+}
+
+.apply-button:hover {
+  background-color: #ff5964;
+  color: #fff;
+}
+
+#about {
+
+  margin: auto;
+  padding: 120px 0;
+}
+
+#about header {
+  font-size: 25px;
+  font-weight: 800;
+  border-bottom: 3px solid #414141;
+  width: max-content;
+}
+
+#about .body {
+  color: #546A7B;
+  font-size: 17.5px;
+  padding: 20px 3px 0;
+}
+
+.section3 {
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+#sponsors {
+  padding: 120px 0;
+}
+
+#sponsors header {
+  font-size: 25px;
+
+  font-weight: 800;
+  border-bottom: 3px solid #414141;
+  width: max-content;
+}
+
+.container-wrapper {
+  background-color: #fff;
+}
+
+.register-wrapper {
+
+  text-align: left;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+
+  position: relative;
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+.form-header {
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 600;	  
+  color: #F1FAEE;
+  background-color: #546A7B
+}
+
+.animated-form {
+  padding: 0 !important;
+  margin-right: 10px;  
+
+}
+
+.registration-form {
+  padding: 15px;
+}
+
+.registration-form .form-input-basic {
+  padding: 14px 5px 0px 14px;
+  outline: 0;
+
+  border-image: none;
+  border: 1px #e0e0e0 solid;
+  
+  transition: all .2s ease-in-out;
+  
+  border-radius: 3px;
+  background-color: #fcfcfb;
+  height: 45px;
+  width: 100%;
+  
+
+}
+
+.registration-form .form-input-basic:hover,
+.registration-form .form-input-basic:focus{
+  border-color: #9EA3B0;
+}
+
+.animated-form-label {
+  display: inline-block;
+  text-transform: uppercase;
+
+  position: absolute;
+  left: 10px;
+  top: 13px;
+  font-size: 11px;
+  vertical-align: middle;
+  pointer-events: none;
+  transition: all .2s ease-in-out;
+  font-weight: 600;
+  color: #b0b0b0;
+}
+
+.animated-form .form-input-basic:hover+.animated-form-label, 
+.animated-form .form-input-basic:active+.animated-form-label,
+.animated-form .form-input-basic:focus+.animated-form-label,
+.animated-form .form-input-basic[data-empty=false]+.animated-form-label{
+  top: 6px;
+  font-size: 9px;
+  left: 15px;
+}
+
+.registration-form input[type="submit"] {
+  background-image: none;
+  border: 0;
+  background-color: #E63946;
+  color: #fff;
+  border-radius: 3px;
+  padding: 10px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.registration-form input[type="submit"]:hover {
+  
+  
+}
+
+.registration-form>div {
+  margin: 10px;
+}
+
+.form-row {
+  display: flex;
+  margin: 0;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #606060;
+}
+
+.sponsor-view {
+  text-align: center;
+}
+
+.sponsor-view img {
+  max-width: 350px;
+  margin: 30px;
+  display: inline-block;
+}
+
+.post-wrapper {
+  display: flex;
+}
+
+.point {
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border: 3px solid #0D1F2D;
+  border-radius: 50%;
+  margin: 70px 0 0 0;
+}
+
+.point.active {
+  background-color: #0D1F2D;
+}
+
+.event-wrapper {
+  top: 71px;
+}
+
+.vertical-nav>ul {
+  margin-bottom: 0;
+}
+
+.nav-slider {
+  width: 5px;
+  height: 12%;
+  position: absolute;
+  background-color: #546A7B;
+  left: 10px;
+  top: 94px;
+}
+
+.t1 {
+  background-color: #E63946 !important;
+  top: 96px;
+}
+
+.t2 {
+  background-color: #F1FAEE !important;
+  top: 96px;
+}
+
+.t3 {
+  background-color: #A8DADC !important;
+  top: 96px;
+}
+
+@media (min-width: 768px){
+  .container {
+    width: 720px;
+  }
+}
+@media (min-width: 992px){
+  .container {
+    width: 800px;
+  }
+}
+@media (min-width: 1200px){
+  .container {
+    width: 1180px;
+  }
+}

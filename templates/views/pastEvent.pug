@@ -1,0 +1,64 @@
+doctype html
+head
+	meta(charset='utf-8')
+	title Datafest prototype
+	link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet' type='text/css')
+	link(href='/styles/main.css' rel='stylesheet' type='text/css')
+	link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700,800' rel='stylesheet')
+#datafest-nav.banner.banner-colored.container-fluid
+	.logo
+		| DataFest @ UTSC
+	ul.nav.navbar-right
+		li
+			a(href='/#about') About
+		li
+			a(href='/#sponsors') Sponsors
+		li
+			a(href='/#schedule') Schedule
+		li.dropdown
+			a#navbarDropdown.dropdown-toggle(href='' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+				| Past Events
+			.dropdown-menu(aria-labelledby='navbarDropdown')
+				each pastEvent in pastEvents
+					a.dropdown-item(href=pastEvent.link)=pastEvent.title
+.container.event-wrapper
+	.post-wrapper
+		nav.vertical-nav
+			.nav-slider
+			.nav-slider.t1
+			.nav-slider.t2
+			.nav-slider.t3
+			ul
+				a(href="#introduction")
+					.point.active
+				a(href="#first-place")
+					.point
+				a(href="#second-place")
+					.point
+				a(href="#third-place")
+					.point
+				a(href="#gallery")
+					.point
+				a(href="#sponsors")
+					.point
+			
+		.post-container
+			section#introduction
+				header
+				
+			section#first-place
+			
+			section#second-place
+			
+			section#third-place
+			
+			section#gallery
+			
+			section#sponsors
+			
+			
+
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+script(src='https://unpkg.com/popper.js/dist/umd/popper.min.js')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js')
+

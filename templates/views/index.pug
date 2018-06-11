@@ -1,0 +1,45 @@
+doctype html
+head
+	meta(charset='utf-8')
+	title Datafest prototype
+	link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet' type='text/css')
+	link(href='styles/main.css' rel='stylesheet' type='text/css')
+	link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700,800' rel='stylesheet')
+#datafest-nav.banner.container-fluid
+	.logo
+		| DataFest @ UTSC
+	ul.nav.navbar-right
+		li
+			a(href='#about') About
+		li
+			a(href='#sponsors') Sponsors
+		li
+			a(href='#schedule') Schedule
+		li.dropdown
+			a#navbarDropdown.dropdown-toggle(href='' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+				| Past Events
+			.dropdown-menu(aria-labelledby='navbarDropdown')
+				each pastEvent in pastEvents
+					a.dropdown-item(href="/past-events/"+pastEvent.title.replace(" ", "-"))=pastEvent.title
+section.section1.splash
+	.bg-wrapper
+		#splash-bg.splash-bg
+	.splash-text
+		.asa-logo
+		.datafest-date #{eventDates}
+		a.btn.apply-button(href='/registration') Register
+.container-wrapper
+	.container
+		section#about.section2
+			header #{introTitle}
+			.body #{introBody}
+		section#sponsors.section3
+			header
+				| Sponsored By
+			.sponsor-view
+				each sponsor in sponsors
+					img(src=sponsor["secure_url"])
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+script(src='https://unpkg.com/popper.js/dist/umd/popper.min.js')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js')
+script(src='js/datafest.js')
