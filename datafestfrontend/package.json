@@ -1,0 +1,25 @@
+{
+  "name": "datafestfrontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "fs-extra": "^6.0.1",
+    "ncp": "^2.0.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-dropdown": "^1.5.0",
+    "react-numeric-input": "^2.2.3",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "react-scrollable-anchor": "^0.6.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "watch": "node scripts/watch.js",
+    "copy": "node scripts/copy.js"
+  }
+}
