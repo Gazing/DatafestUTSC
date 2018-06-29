@@ -1,5 +1,5 @@
 window.onload = function () {
-
+	
 	$('a[href*="#"]')
 		.not('[href="#"]')
 		.not('[href="#0"]')
@@ -25,7 +25,6 @@ window.onload = function () {
 							$target.attr('tabindex', '-1');
 							$target.focus();
 						}
-
 					});
 
 				}

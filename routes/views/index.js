@@ -21,12 +21,18 @@ exports = module.exports = function (req, res) {
 		.limit(10)
 		.exec()
 		.then(function(pastEvents) {
-			data.pastEvents = pastEvents;
+			data.pastEvents = [];
+			pastEvents.forEach(function (event) {
+				var pe = {};
+				pe.title = event.title;
+				
+				data.pastEvents.push(pe);
+			});
 			return Snippet.model.find().exec();
 		}).then(function (snippets) {
-			
+			data.snippets = {};
 			snippets.forEach(function (snippet) {
-				data[snippet.name] = snippet.content;
+				data.snippets[snippet.name] = snippet.content;
 			});
 			
 			return Sponsor.model.find().exec();

@@ -84,4 +84,10 @@ section.section1.splash
 script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
 script(src='https://unpkg.com/popper.js/dist/umd/popper.min.js')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js')
-script(src='js/datafest.js')
+script.
+	window.datafest = window.datafest || {};
+	datafest.sponsors = !{JSON.stringify(sponsors)};
+	datafest.pastEvents = !{JSON.stringify(pastEvents)};
+	datafest.snippets = !{JSON.stringify(snippets)};
+script(src='js/datafest_main.js')
+script(src='js/helper.js')
