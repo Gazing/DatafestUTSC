@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-	Link
-} from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import Registration from "./Registration";
 import {
 	BrowserRouter as Router,
 	Route
 } from 'react-router-dom';
-import ScrollableAnchor from 'react-scrollable-anchor'
 
 
 class FrontPage extends Component {

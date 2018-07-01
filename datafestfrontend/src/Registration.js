@@ -4,9 +4,7 @@ import 'react-dropdown/style.css'
 import FrontPage from "./FrontPage";
 import Dropdown from 'react-dropdown'
 import Actions from "./Actions";
-import {
-	Link
-} from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 
 class Registration extends Component {
 	render() {

@@ -48,7 +48,6 @@ body {
   overflow: hidden;
   width: calc(~"100vw - 17px");
   height: calc(~'100vh - 30%');
-  top: 30%;
 }
 
 .banner {
@@ -218,8 +217,7 @@ a, a:focus, a:hover {
   border-radius: 0;
 
   position: relative;
-  top: 40%;
-  transform: translateY(-50%);
+  top: 71px;
 
   transition: all 0.7s ease-in-out;
   margin: auto;
@@ -719,6 +717,10 @@ a, a:focus, a:hover {
     width: 720px !important;
 	
   }
+  
+  .bg-wrapper {
+	top: 45%;
+  }
 }
 @media (min-width: 992px){
   
@@ -729,7 +731,12 @@ a, a:focus, a:hover {
   .container {
     width: 800px !important;
   }
+
+  .bg-wrapper {
+	top: 40%;
+  }
 }
+
 @media (min-width: 1200px){
 
   .register-wrapper {
@@ -738,5 +745,15 @@ a, a:focus, a:hover {
   
   .container {
     width: 1180px !important;
+  }
+
+  .bg-wrapper {
+	top: 35%;
+  }
+}
+
+@media (min-width: 1400px){
+  .bg-wrapper {
+	top: 30%;
   }
 }
