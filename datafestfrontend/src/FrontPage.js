@@ -136,7 +136,7 @@ class AnimatedShortcut extends Component {
 	render() {
 		return <li>
 			<ScrollWrapper onWindowScroll={this.onWindowScroll.bind(this)}>
-				<Link to={this.props.link} className={this.state.active ? "nav-active" : ""}> {this.props.name} </Link>
+				<Link smooth to={this.props.link} className={this.state.active ? "nav-active" : ""}> {this.props.name} </Link>
 			</ScrollWrapper>
 		</li>
 	}
@@ -222,6 +222,18 @@ class SplashAnimation extends Component {
 
 class AboutSection extends Component {
 
+
+
+	render() {
+		return <section id="about" className="section2">
+					<header>About</header>
+					<DescriptionSection />
+					<PrizeSection />
+				</section>;
+	}
+}
+
+class DescriptionSection extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -235,11 +247,10 @@ class AboutSection extends Component {
 	}
 
 	render() {
-		return <section id="about" className="section2">
-					<header>{this.state.introTitle}</header>
-					<div className="body">{this.state.introBody}</div>
-					<PrizeSection />
-				</section>;
+		return <div className="subsection">
+			<header>{this.state.introTitle}</header>
+			<div className="body">{this.state.introBody}</div>
+		</div>;
 	}
 }
 
@@ -272,37 +283,42 @@ class PrizeSection extends Component {
 	constructor() {
 		super();
 		this.state = {
-			prizes: [{name: "Best in Show", color: "#EE6352", amount: 200}, {name: "Best Visualization", color: "#59CD90", amount: 200}, {name: "Best Use of External Data", color: "#3FA7D6", amount: 200}]
+			prizes: [{name: "Best in Show", amount: 300, className: "best-in-show"}, {name: "Best Visualization", amount: 300, className: "best-visual"}, {name: "Best Use of External Data", amount: 300, className: "best-data"}]
 		}
 	}
 	
 	renderPrize(prize) {
 		let width = 1000 / this.state.prizes.length;
-		return <Prize width={width} label={prize.name} color={prize.color} amount={prize.amount}/>
+		return <Prize className={prize.className} width={width} label={prize.name} color={prize.color} amount={prize.amount}/>
 	}
 	
 	render() {
 		
-		return <section id="prizes" className="prize-section">
+		return <div id="prizes" className="subsection prize-section">
 					<header>Prizes</header>
+					<div className="subheading">Prizes are split into 3 categories</div>
 					<div className="prize-view">
 						{this.state.prizes.map(this.renderPrize.bind(this))}
 					</div>
-		</section>
+		</div>;
 	}
 }
 
 class Prize extends Component {
 	render() {
 		return <div className="prize-item">
-					<div className="prize-block" style={{backgroundColor: this.props.color, width: this.props.width}}>
+					<div className="prize-block" style={{width: this.props.width}}>
+						<div className={"prize-art "+this.props.className}>
+							
+						</div>
 						<div className="prize-label">
 							{this.props.label}
 						</div>
+						<div className="prize-amount">
+							{"$"+this.props.amount}
+						</div>
 					</div>
-					<div className="prize-amount">
-						{"$"+this.props.amount}
-					</div>
+
 			</div>
 	}
 }
