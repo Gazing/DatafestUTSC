@@ -20,13 +20,14 @@ class FrontPage extends Component {
 
 class MainPage extends Component {
 	render() {
-		return <div>
+		return <div className="section-wrapper">
 				<SplashSection>
 					<SplashText/>
 				</SplashSection>
 				<div className="container-wrapper">
 					<div className="container">
 						<AboutSection />
+						<ScheduleSection />
 						<SponsorsSection />
 					</div>
 				</div>
@@ -324,7 +325,43 @@ class Prize extends Component {
 }
 
 class ScheduleSection extends Component {
+	constructor() {
+		super();
+		this.state = {
+			schedule: [],
+			locations: []
+		};
+	}
 	
+	componentWillMount() {
+		var locations = [];
+		window.datafest.schedule.forEach(function (item) {
+			if (locations.indexOf(item.location) === -1) locations.push(item.location);
+		});
+		this.setState({schedule: window.datafest.schedule, locations: locations});
+		
+	}
+	
+	componentDidMount() {
+		var timetable = new window.Timetable();
+		timetable.setScope(9, 23);
+		
+		timetable.addLocations(this.state.locations);
+		
+		this.state.schedule.forEach(function (item) {
+			timetable.addEvent(item.name, item.location, new Date(item.start), new Date(item.end));
+		});
+
+		var renderer = new window.Timetable.Renderer(timetable);
+		renderer.draw('.timetable');
+	}
+	
+	render() {
+		return <section id="schedule" className="section4">
+			<header>Event Schedule</header>
+			<div className="timetable"></div>
+		</section>;
+	}
 }
 
 let exp = {FrontPage: FrontPage, NavBarBasic: NavBarBasic, SplashSection: SplashSection};

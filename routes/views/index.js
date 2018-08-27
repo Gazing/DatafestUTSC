@@ -2,6 +2,7 @@ var keystone = require('keystone'),
 	PastEvent = keystone.list('PastEvent'),
 	Snippet = keystone.list('Snippet'),
 	Sponsor = keystone.list('Sponsor');
+	Schedule = keystone.list('Schedule');
 	
 var helper = require('../../helpers');
 
@@ -35,6 +36,9 @@ exports = module.exports = function (req, res) {
 				data.snippets[snippet.name] = snippet.content;
 			});
 			
+			return Schedule.model.find().exec();
+		}).then(function (schedules) {
+			data.schedule = schedules;
 			return Sponsor.model.find().exec();
 		}).then(function (sponsors) {
 			sponsorImages = [];
