@@ -8,6 +8,7 @@ Schedule.add({
 	location: { type: String, required: true, initial: true },
 	start: { type: Types.Datetime, required: true, initial: true },
 	end: { type: Types.Datetime, required: true, initial: true },
+	colour: { type: Types.Select, options: "blue, green, yellow" }
 });
 
 Schedule.defaultColumns = 'name, location, start, end';

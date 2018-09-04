@@ -60,11 +60,13 @@ class NavBarBasic extends Component {
 						DataFest @ UTSC
 					</Link>
 					<ul className="nav navbar-right">
-						<AnimatedShortcut link="/#about" name="About" activeStart={0.41} activeEnd={0.85}/>
+						<AnimatedShortcut link="/#about" name="About" activeStart={0.36} activeEnd={0.74}/>
+
+						<AnimatedShortcut link="/#schedule" name="Schedule" activeStart={0.75} activeEnd={1}/>
+						
+						<AnimatedShortcut link="/#sponsors" name="Sponsors" activeStart={1} activeEnd={1.3}/>
 		
-						<AnimatedShortcut link="/#sponsors" name="Sponsors" activeStart={0.85} activeEnd={1.03}/>
-		
-						<AnimatedShortcut link="/#schedule" name="Schedule" activeStart={1} activeEnd={1}/>
+						
 		
 						<PastEventsDropDown />
 					</ul>
@@ -349,7 +351,10 @@ class ScheduleSection extends Component {
 		timetable.addLocations(this.state.locations);
 		
 		this.state.schedule.forEach(function (item) {
-			timetable.addEvent(item.name, item.location, new Date(item.start), new Date(item.end));
+			let options = {
+				class: item.colour
+			};
+			timetable.addEvent(item.name, item.location, new Date(item.start), new Date(item.end), options);
 		});
 
 		var renderer = new window.Timetable.Renderer(timetable);
