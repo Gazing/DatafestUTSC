@@ -88,46 +88,41 @@ class RegistrationForm extends Component {
 		this.state = {
 			active: false,
 			isAnimating: true,
+			maxTeamSize: 0,
 			teamName: null,
 			email: null,
-			tm1: {
-				firstName: null,
-				lastName: null,
-				year: null,
-				program: null,
-				campus: null
-			},
-			tm2: {
-				firstName: null,
-				lastName: null,
-				year: null,
-				program: null,
-				campus: null
-			},
-			tm3: {
-				firstName: null,
-				lastName: null,
-				year: null,
-				program: null,
-				campus: null
-			}
+			tms: {}
 
 		};
 		
 	}
 	
 	componentDidMount() {
+		let tms = {};
+		let teamSize = parseInt(window.datafest.snippets.maxTeamSize);
+		for (let i = 0; i < teamSize; i++) {
+			let tm = {
+				firstName: null,
+				lastName: null,
+				year: null,
+				program: null,
+				campus: null
+			};
+			let n = i+1;
+			tms["tm"+n] = tm;
+		}
+		this.setState({maxTeamSize: teamSize, tms: tms});
 		setTimeout(function () {
 			this.setState({active: true});
 			setTimeout(function () {
 				this.setState({isAnimating: false});
-			}.bind(this), 700)
-		}.bind(this), 300)
+			}.bind(this), 700);
+		}.bind(this), 300);
 	}
 	
 	inputOnChange(tm, binding) {
 		return function (newValue) {
-			let t = this.state[tm];
+			let t = this.state.tms[tm];
 			t[binding] = newValue;
 			let temp = {};
 			temp[tm] = t;
@@ -137,22 +132,32 @@ class RegistrationForm extends Component {
 	
 	onSubmit(e) {
 		e.preventDefault();
-		let tm1 = this.state.tm1;
-		tm1.name = {first: tm1.firstName, last: tm1.lastName};
-		let tm2 = this.state.tm2;
-		tm2.name = {first: tm2.firstName, last: tm2.lastName};
-		let tm3 = this.state.tm3;
-		tm3.name = {first: tm3.firstName, last: tm3.lastName};
+		let teamList = [];
+		for (let tm in this.state.tms) {
+			let teamMember = this.state.tms[tm];
+			if (!teamMember.firstName) continue;
+			teamMember.name = {first: teamMember.firstName, last: teamMember.lastName};
+			teamList.push(teamMember);
+		}
 		Actions.onSubmitRegistration({
 			teamName: this.state.teamName,
 			email: this.state.email,
-			tm1: tm1,
-			tm2: tm2,
-			tm3: tm3
+			teamMembers: teamList
 		}, this.props.onResult);
 	}
 	
-
+	makeList() {
+		let list = [];
+		for (let i = 0; i < this.state.maxTeamSize; i++) {
+			list.push((i+1));
+		}
+		return list;
+	}
+	
+	isPartiallyFilled(name) {
+		let t = this.state.tms[name];
+		return t.firstName || t.lastName || t.campus || t.year || t.program;
+	}
 	
 	render() {
 		return <form className="registration-form" onSubmit={this.onSubmit.bind(this)} style={{maxHeight: this.state.active ? "1000px" : "0", overflow: this.state.isAnimating ? "hidden" : "visible"}}>
@@ -161,39 +166,20 @@ class RegistrationForm extends Component {
 								<TextInput label="Team Name" required={true} onInput={(value) => {this.setState({teamName: value})}}/>
 								<TextInput label="Contact Email" required={true} onInput={(value) => {this.setState({email: value})}}/>
 						</div>
-						<div>
-							<div className="form-label">Team Member #1</div>
-							<div className="form-row">
-								<TextInput label="First Name" required={true} onInput={this.inputOnChange("tm1", "firstName")} />
-								<TextInput label="Last Name" required={true} onInput={this.inputOnChange("tm1", "lastName")} />
-								<YearInput label="Year of Study" required={true} onInput={this.inputOnChange("tm1", "year")} />
-								<ProgramInput label="Program" required={true} onInput={this.inputOnChange("tm1", "program")} />
-								<CampusInput label="Campus" required={true} onInput={this.inputOnChange("tm1", "campus")} />
-							</div>
-							
-						</div>
-						<div>
-							<div className="form-label">Team Member #2</div>
-							<div className="form-row">
-								<TextInput label="First Name" required={true} onInput={this.inputOnChange("tm2", "firstName")} />
-								<TextInput label="Last Name" required={true} onInput={this.inputOnChange("tm2", "lastName")} />
-								<YearInput label="Year of Study" required={true} onInput={this.inputOnChange("tm2", "year")} />
-								<ProgramInput label="Program" required={true} onInput={this.inputOnChange("tm2", "program")} />
-								<CampusInput label="Campus" required={true} onInput={this.inputOnChange("tm2", "campus")} />
-							</div>
-	
-						</div>
-						<div>
-							<div className="form-label">Team Member #3</div>
-							<div className="form-row">
-								<TextInput label="First Name" onInput={this.inputOnChange("tm3", "firstName")} />
-								<TextInput label="Last Name" onInput={this.inputOnChange("tm3", "lastName")} />
-								<YearInput label="Year of Study" onInput={this.inputOnChange("tm3", "year")} />
-								<ProgramInput label="Program" onInput={this.inputOnChange("tm3", "program")} />
-								<CampusInput label="Campus" onInput={this.inputOnChange("tm3", "campus")} />
-							</div>
-	
-						</div>
+						{this.makeList().map(function (i) {
+							let name = "tm" + i;
+							let isRequired = (i < 3) || this.isPartiallyFilled(name);
+							return <div>
+										<div className="form-label">Team Member #{i}</div>
+										<div className="form-row">
+											<TextInput label="First Name" required={isRequired} onInput={this.inputOnChange(name, "firstName")} />
+											<TextInput label="Last Name" required={isRequired} onInput={this.inputOnChange(name, "lastName")} />
+											<YearInput label="Year of Study" required={isRequired} onInput={this.inputOnChange(name, "year")} />
+											<ProgramInput label="Program" required={isRequired} onInput={this.inputOnChange(name, "program")} />
+											<CampusInput label="Campus" required={isRequired} onInput={this.inputOnChange(name, "campus")} />
+										</div>
+								</div>
+						}.bind(this))}
 						
 						<div style={{textAlign: "right", paddingRight: "1.367%", marginTop: "20px"}}>
 							<input className="col-md-3" type="submit"/>

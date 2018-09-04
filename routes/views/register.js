@@ -61,35 +61,44 @@ exports = module.exports = {
 		
 		console.log(data);
 		
-		let tm1 = new Teammate.model(data.tm1);
-
-		let tm2 = new Teammate.model(data.tm2);
-
-		let tm3 = new Teammate.model(data.tm3);
+		Promise.all(data.teamMembers.map(function (tm) {
+			return new Promise(function (resol, rej) {
+				let teamMember = new Teammate.model(tm);
+				teamMember.save(function (err) {
+					if (err) return rej({status: 400, error: err.errors});
+					resol(teamMember._id);
+				});
+			});
 		
-		let newRegistration = new Registration.model({
-			teamName: data.teamName,
-			email: data.email,
-			teamMember1: tm1._id,
-			teamMember2: tm2._id,
-			teamMember3: tm3._id
-		});
-		
-		console.log(newRegistration);
 
-		tm1.save(function (err, result) {
-			if (err) return res.status(400).json({status: 400, error: err.errors});
-			tm2.save(function (err, result) {
-				if (err) return res.status(400).json({status: 400, error: err.errors});
-				tm3.save(function (err, result) {
-					if (err) return res.status(400).json({status: 400, error: err.errors});
-					newRegistration.save(function (err, result) {
-						if (err) return res.status(400).json({status: 400, error: err.errors});
-						res.json({});
-					})
-				})
+		})).then(function (teamList) {
+			let newRegistration = new Registration.model({
+				teamName: data.teamName,
+				email: data.email,
+				teamMembers: teamList
+			});
+
+			console.log(newRegistration);
+			
+			newRegistration.save(function (err) {
+				if (err) return res.json({status: 400, error: err.errors});
+				res.json({});
 			})
+			
+			
+		}).catch(function (err) {
+			res.json(err);
 		});
+		
+
+		
+		
 		
 	}
 };
+
+function saveTeamMember (teamList, tm) {
+	let teamMember = new Teammate.model(tm);
+	
+	teamList.push(teamMember);
+}
