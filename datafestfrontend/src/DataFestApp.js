@@ -5,6 +5,7 @@ import {
 	Route
 } from 'react-router-dom';
 import FrontPage from "./FrontPage";
+import PastEvents from "./PastEvents";
 
 class DataFestApp extends Component {
 	render() {
@@ -12,6 +13,7 @@ class DataFestApp extends Component {
 			<div>
 				<Route exact path="/" component={FrontPage.FrontPage}/>
 				<Route exact path="/registration" component={FrontPage.FrontPage}/>
+				<Route path="/past-events/:name" component={PastEvents} />
 			</div>
 		</Router>
 	}

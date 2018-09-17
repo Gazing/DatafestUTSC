@@ -42,7 +42,9 @@ exports = module.exports = function (app) {
 	
 	app.post("/api/registration", routes.views.register.registrationSubmit);
 	
-	app.get('/past-events/:name', routes.views.pastEvent);
+	app.get('/past-events/:name', routes.views.pastEvent.pastEventsPage);
+	
+	app.get('/api/pastevent/:name', routes.views.pastEvent.pastEventAPI);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

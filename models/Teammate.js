@@ -3,7 +3,7 @@ var Types = keystone.Field.Types;
 
 var Teammate = new keystone.List('Teammate');
 
-Teammate .add({
+Teammate.add({
 	name: { type: Types.Name, required: true, initial: true, index: true },
 	year: { type: String, required: true, initial: true },
 	program: { type: String, required: true, initial: true },

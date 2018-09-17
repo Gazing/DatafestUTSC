@@ -9,6 +9,13 @@ let Actions = {
 			success: onSuccess(callback),
 			error: onError(callback)
 		})	
+	},
+	getPastEvent: function (name, callback) {
+		$.ajax({
+			url: "/api/pastevent/"+name,
+			success: onSuccess(callback),
+			error: onError(callback)
+		})
 	}
 };
 

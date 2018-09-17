@@ -4,76 +4,14 @@ head
 	title Datafest prototype
 	link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet' type='text/css')
 	link(href='/styles/main.css' rel='stylesheet' type='text/css')
+	link(href='/styles/timeline.css' rel='stylesheet' type='text/css')
 	link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700,800' rel='stylesheet')
-#datafest-nav.banner.banner-colored.container-fluid
-	.logo
-		| DataFest @ UTSC
-	ul.nav.navbar-right
-		li
-			a(href='/#about') About
-		li
-			a(href='/#sponsors') Sponsors
-		li
-			a(href='/#schedule') Schedule
-		li.dropdown
-			a#navbarDropdown.dropdown-toggle(href='' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-				| Past Events
-			.dropdown-menu(aria-labelledby='navbarDropdown')
-				each pastEvent in pastEvents
-					a.dropdown-item(href=pastEvent.link)=pastEvent.title
-.container.event-wrapper
-	.post-wrapper
-		nav.vertical-nav
-			.nav-slider
-			.nav-slider.t1
-			.nav-slider.t2
-			.nav-slider.t3
-			ul
-				a(href="#introduction")
-					.point.active
-				a(href="#prize1")
-					.point
-				a(href="#prize2")
-					.point
-				a(href="#prize3")
-					.point
-				a(href="#gallery")
-					.point
-				a(href="#sponsors")
-					.point
-			
-		.post-container
-			section#introduction
-				header DataFest @ UTSC 2018
-				.body Congratulations to all teams that participated in 2018 ASA DataFest @ UofT. Thank you to all of our mentors and judges.  Your time and energy was greatly appreciated!
-			section.awards
-				header Awards
-				#prize1.award-container
-					header Best in Show
-					.body
-						.picture
-						.team-members
-				
-				#prize2.award-container
-					header Best Visualization
-					.body
-						.picture
-						.team-members
-				
-				#prize3.award-container
-					header Best Use of External Data
-					.body
-						.picture
-						.team-members
-			
-			section#gallery
-				header Gallery
-			section#sponsors
-				header Sponsors
+#root
 			
 			
 
 script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+script(src='/js/datafest_main.js')
 script(src='https://unpkg.com/popper.js/dist/umd/popper.min.js')
 script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js')
 
