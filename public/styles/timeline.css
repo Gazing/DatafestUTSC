@@ -26,9 +26,9 @@
 
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7abcff+0,60abf8+44,4096ee+100;Blue+3D+%2314 */
 	background: #7abcff; /* Old browsers */
-	background: -moz-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	background: -moz-linear-gradient(top, #5D737E 0%, #5D737E 44%, #0D1F2D 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #5D737E 0%,#5D737E 44%,#0D1F2D 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #5D737E 0%,#5D737E 44%,#0D1F2D 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
 
 	cursor: pointer;
@@ -47,6 +47,14 @@
 	width: 250px;
 	text-align: right;
 	cursor: pointer;
+	font-weight: 600;
+	color: #414141;
+	opacity: 0.5;
+	transition: all 0.2s linear;
+}
+
+.timeline-bookmark.visited>div {
+	opacity: 1;
 }
 
 div.timeline-bookmark::before {
@@ -57,14 +65,15 @@ div.timeline-bookmark::before {
 	height: 12px;
 	width: 12px;
 	border-radius: 50%;
-//background-color: #d2d2d2;
-	box-shadow: 0 0 0 3px #4286f4, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 3px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+	box-shadow: 0 0 0 3px #A8DADC, 0 3px 0 3px rgba(0, 0, 0, 0.05);
 	transition: all .2s ease-in-out;
 	cursor: pointer;
 }
 
 div.timeline-bookmark.visited::before {
-	opacity: 0.7;
+	opacity: 1;
+	background-color: #A8DADC;
 }
 
 

@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Actions from "./Actions";
 import { Timeline, Bookmark } from 'react-vertical-timeline';
+import { HashLink as Link } from 'react-router-hash-link'
 
 class PastEventsPage extends Component {
 	
@@ -79,37 +80,93 @@ class TimelineNav extends Component {
 		super();
 		this.state = {
 			progress: 0,
-			height: window.innerHeight
+			height: window.innerHeight - 240
 		}
 	}
 	
 	componentDidMount() {
 		setInterval(this.checkHeight.bind(this), 100);
+		window.addEventListener("scroll", function (e) {
+			if (this.state.isScrolling) return;
+			let h = document.documentElement,
+				b = document.body,
+				st = 'scrollTop',
+				sh = 'scrollHeight';
+			let percent = (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+			this.setState({progress: percent});
+		}.bind(this));
 	}
 	
 	checkHeight() {
 		if (window.innerHeight != this.state.height)
-			this.setState({height: window.innerHeight});
+			this.setState({height: window.innerHeight - 240});
+	}
+	
+	calculatePercent(element, addFlag) {
+		if (!element) return 0;
+		let scrollPos = element.offsetTop + 71 * addFlag;
+		let h = document.documentElement,
+			b = document.body,
+			sh = 'scrollHeight';
+		let percent = scrollPos / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+		if (percent > 100) percent = 100;
+		return percent;
+
 	}
 	
 	render() {
-		return <Timeline height={this.state.height} progress={ this.state.progress } onSelect={p => this.setState({ progress: p })}>
-			<Bookmark progress={20} onSelect={p => {this.setState({ progress: p}); window.location = "#"+"introduction"}}>
+		let awardElement = $("#awards")[0];
+		return <Timeline height={this.state.height} progress={ this.state.progress } onSelect={p => {this.setState({ progress: p }); 		
+					let h = document.documentElement,
+						b = document.body,
+						sh = 'scrollHeight';
+						let scroll = (p / 100) * ((h[sh]||b[sh]) - h.clientHeight);
+						this.setState({isScrolling: true});
+						$('html, body').animate({
+							scrollTop: scroll
+						}, 1000, function() {
+							this.setState({isScrolling: false});
+						}.bind(this))}} >
+			<Bookmark progress={this.calculatePercent($("#introduction")[0], 1)} onSelect={p => {this.setState({ progress: p});
+				document.querySelector('#introduction').scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});}}>
 				Introduction
 			</Bookmark>
-			<Bookmark progress={35} onSelect={p => {this.setState({ progress: p}); window.location = "#"+"awards"}}>
+			<Bookmark progress={this.calculatePercent(awardElement, 1)} onSelect={p => {this.setState({ progress: p});
+				document.querySelector('#awards').scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});}}>
 				Awards
 			</Bookmark>
-			<Bookmark progress={40} onSelect={p => {this.setState({ progress: p}); window.location = "#"+"prize1"}}>
+			<Bookmark progress={this.calculatePercent($("#prize1")[0], 0) + this.calculatePercent(awardElement, 1)} onSelect={p => {this.setState({ progress: p});
+				document.querySelector('#prize1').scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});}}>
 				Best in Show
 			</Bookmark>
-			<Bookmark progress={45} onSelect={p => {this.setState({ progress: p}); window.location = "#"+"prize2"}}>
+			<Bookmark progress={this.calculatePercent($("#prize2")[0], 0) + this.calculatePercent(awardElement, 1)} onSelect={p => {this.setState({ progress: p});
+				document.querySelector('#prize2').scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});}}>
 				Best Visualization
 			</Bookmark>
-			<Bookmark progress={50} onSelect={p => {this.setState({ progress: p}); window.location = "#"+"prize3"}}>
+			<Bookmark progress={this.calculatePercent($("#prize3")[0], 0) + this.calculatePercent(awardElement, 1)} onSelect={p => {this.setState({ progress: p});
+				document.querySelector('#prize3').scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});}}>
 				Best Use of External Data
 			</Bookmark>
-			<Bookmark progress={75} onSelect={p => {this.setState({ progress: p}); window.location = "#"+"gallery"}}>
+			<Bookmark progress={this.calculatePercent($("#gallery")[0], 1)} onSelect={p => {this.setState({ progress: p});
+				document.querySelector('#gallery').scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});}}>
 				Gallery
 			</Bookmark>
 		</Timeline>;
@@ -144,7 +201,7 @@ class AwardContainer extends Component {
 		return <div className="award-container" id={this.props.id}>
 			<div className="award-wrapper">
 				<div className="body">
-					<img className="picture" src="/images/datafest-ph.jpg" />
+					<img className="picture" src={this.props.data.image["secure_url"]} />
 					
 				</div>
 				<header>

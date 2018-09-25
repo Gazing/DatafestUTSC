@@ -55,10 +55,16 @@ exports = module.exports = {
 				
 				awards.prize1.teamName = pastEvent.prize1TeamName;
 				awards.prize1.team = pastEvent.prize1Members;
+				awards.prize1.image = pastEvent.prize1Image;
+				
 				awards.prize2.teamName = pastEvent.prize2TeamName;
 				awards.prize2.team = pastEvent.prize2Members;
+				awards.prize2.image = pastEvent.prize2Image;
+				
 				awards.prize3.teamName = pastEvent.prize3TeamName;
 				awards.prize3.team = pastEvent.prize3Members;
+				awards.prize3.image = pastEvent.prize3Image;
+				
 				
 				let sponsors = pastEvent.sponsors;
 				
