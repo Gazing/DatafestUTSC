@@ -369,6 +369,6 @@ class ScheduleSection extends Component {
 	}
 }
 
-let exp = {FrontPage: FrontPage, NavBarBasic: NavBarBasic, SplashSection: SplashSection};
+let exp = {FrontPage: FrontPage, NavBarBasic: NavBarBasic, SplashSection: SplashSection, PastEventsDropDown: PastEventsDropDown};
 
 export default exp;

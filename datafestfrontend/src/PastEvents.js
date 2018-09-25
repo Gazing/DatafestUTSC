@@ -7,6 +7,7 @@ import {
 import Actions from "./Actions";
 import { Timeline, Bookmark } from 'react-vertical-timeline';
 import { HashLink as Link } from 'react-router-hash-link'
+import FrontPage from "./FrontPage"
 
 class PastEventsPage extends Component {
 	
@@ -65,10 +66,7 @@ class NavBar extends Component {
 				<li><a href="/#about">About</a></li>
 				<li><a href="/#sponsors">Sponsors</a></li>
 				<li><a href="/#schedule">Schedule</a></li>
-				<li className="dropdown"><a className="dropdown-toggle" id="navbarDropdown" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Past Events</a>
-					<div className="dropdown-menu" aria-labelledby="navbarDropdown"><a className="dropdown-item">tetestt</a>
-					</div>
-				</li>
+				<FrontPage.PastEventsDropDown />
 			</ul>
 		</div>;
 	}
