@@ -9,7 +9,7 @@
 
 exports.create = {
 	User: [
-		{ 'name.first': 'Admin', 'name.last': 'User', 'email': 'wannie.chen@mail.utoronto.ca', 'password': '63577477', 'isAdmin': true },
+		{ 'name.first': 'Admin', 'name.last': 'User', 'email': 'wannie.chen@mail.utoronto.ca', 'password': 'ZTbs2RQM&KB7Q5)C', 'isAdmin': true },
 	],
 };
 
