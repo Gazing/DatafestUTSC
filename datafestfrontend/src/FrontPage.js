@@ -6,7 +6,7 @@ import {
 	BrowserRouter as Router,
 	Route
 } from 'react-router-dom';
-
+var marked = require("marked");
 
 class FrontPage extends Component {
 	render() {
@@ -29,6 +29,8 @@ class MainPage extends Component {
 						<AboutSection />
 						<ScheduleSection />
 						<SponsorsSection />
+						<WorkshopSection />
+						<FAQSection />
 					</div>
 				</div>
 			</div>;
@@ -59,14 +61,18 @@ class NavBarBasic extends Component {
 					<Link to="/" className="logo">
 						DataFest @ UTSC
 					</Link>
-					<ul className="nav navbar-right">
+					<div className="mobile-menu d-lg-none">
+					</div>
+					<ul className="nav navbar-right d-none d-lg-flex">
 						<AnimatedShortcut link="/#about" name="About" activeStart={0.36} activeEnd={0.74}/>
 
 						<AnimatedShortcut link="/#schedule" name="Schedule" activeStart={0.75} activeEnd={1}/>
 						
 						<AnimatedShortcut link="/#sponsors" name="Sponsors" activeStart={1} activeEnd={1.3}/>
-		
+
+						<AnimatedShortcut link="/#workshops" name="Workshops" activeStart={1} activeEnd={1.3}/>
 						
+						<AnimatedShortcut link="/#FAQ" name="FAQ" activeStart={1} activeEnd={1.3}/>
 		
 						<PastEventsDropDown />
 					</ul>
@@ -240,7 +246,7 @@ class DescriptionSection extends Component {
 	constructor() {
 		super();
 		this.state = {
-			introBody: null,
+			introBody: "",
 			introTitle: null
 		}
 	}
@@ -252,7 +258,7 @@ class DescriptionSection extends Component {
 	render() {
 		return <div className="subsection">
 			<header>{this.state.introTitle}</header>
-			<div className="body">{this.state.introBody}</div>
+			<div className="body" dangerouslySetInnerHTML={{__html: marked(this.state.introBody)}}></div>
 		</div>;
 	}
 }
@@ -282,6 +288,12 @@ class SponsorsSection extends Component {
 	}
 }
 
+class SnippetBase extends Component {
+	componentDidMount() {
+		this.setState(window.datafest.snippets);
+	}
+}
+
 class PrizeSection extends Component {
 	constructor() {
 		super();
@@ -291,8 +303,7 @@ class PrizeSection extends Component {
 	}
 	
 	renderPrize(prize) {
-		let width = 1000 / this.state.prizes.length;
-		return <Prize className={prize.className} width={width} label={prize.name} color={prize.color} amount={prize.amount}/>
+		return <Prize className={prize.className} label={prize.name} color={prize.color} amount={prize.amount}/>
 	}
 	
 	render() {
@@ -310,7 +321,7 @@ class PrizeSection extends Component {
 class Prize extends Component {
 	render() {
 		return <div className="prize-item">
-					<div className="prize-block" style={{width: this.props.width}}>
+					<div className="prize-block">
 						<div className={"prize-art "+this.props.className}>
 							
 						</div>
@@ -367,6 +378,42 @@ class ScheduleSection extends Component {
 			<div className="timetable"></div>
 		</section>;
 	}
+}
+
+class FAQSection extends SnippetBase {
+	
+	constructor() {
+		super();
+		this.state = {
+			FAQBody: ""
+		}
+	}
+	
+	render() {
+		return <section id="FAQ" className="section2">
+			<header>FAQ</header>
+			<div className="body" dangerouslySetInnerHTML={{__html: marked(this.state.FAQBody)}}></div>
+		</section>;
+	}
+	
+}
+
+class WorkshopSection extends SnippetBase {
+	
+	constructor() {
+		super();
+		this.state = {
+			workshopBody: ""
+		}
+	}
+	
+	render() {
+		return <section id="workshops">
+			<header>Workshops</header>
+			<div className="body" dangerouslySetInnerHTML={{__html: marked(this.state.workshopBody)}}></div>
+		</section>;
+	}
+	
 }
 
 let exp = {FrontPage: FrontPage, NavBarBasic: NavBarBasic, SplashSection: SplashSection, PastEventsDropDown: PastEventsDropDown};

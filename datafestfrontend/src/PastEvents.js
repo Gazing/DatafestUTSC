@@ -125,42 +125,42 @@ class TimelineNav extends Component {
 						}, 1000, function() {
 							this.setState({isScrolling: false});
 						}.bind(this))}} >
-			<Bookmark progress={this.calculatePercent($("#introduction")[0], 1)} onSelect={p => {this.setState({ progress: p});
+			<Bookmark progress={this.calculatePercent($("#introduction")[0], 1)} onSelect={p => {
 				document.querySelector('#introduction').scrollIntoView({
 					behavior: 'smooth',
 					block: 'start'
 				});}}>
 				Introduction
 			</Bookmark>
-			<Bookmark progress={this.calculatePercent(awardElement, 1)} onSelect={p => {this.setState({ progress: p});
+			<Bookmark progress={this.calculatePercent(awardElement, 1)} onSelect={p => {
 				document.querySelector('#awards').scrollIntoView({
 					behavior: 'smooth',
 					block: 'start'
 				});}}>
 				Awards
 			</Bookmark>
-			<Bookmark progress={this.calculatePercent($("#prize1")[0], 0) + this.calculatePercent(awardElement, 1)} onSelect={p => {this.setState({ progress: p});
+			<Bookmark progress={this.calculatePercent($("#prize1")[0], 0) + this.calculatePercent(awardElement, 1)} onSelect={p => {
 				document.querySelector('#prize1').scrollIntoView({
 					behavior: 'smooth',
 					block: 'start'
 				});}}>
 				Best in Show
 			</Bookmark>
-			<Bookmark progress={this.calculatePercent($("#prize2")[0], 0) + this.calculatePercent(awardElement, 1)} onSelect={p => {this.setState({ progress: p});
+			<Bookmark progress={this.calculatePercent($("#prize2")[0], 0) + this.calculatePercent(awardElement, 1)} onSelect={p => {
 				document.querySelector('#prize2').scrollIntoView({
 					behavior: 'smooth',
 					block: 'start'
 				});}}>
 				Best Visualization
 			</Bookmark>
-			<Bookmark progress={this.calculatePercent($("#prize3")[0], 0) + this.calculatePercent(awardElement, 1)} onSelect={p => {this.setState({ progress: p});
+			<Bookmark progress={this.calculatePercent($("#prize3")[0], 0) + this.calculatePercent(awardElement, 1)} onSelect={p => {
 				document.querySelector('#prize3').scrollIntoView({
 					behavior: 'smooth',
 					block: 'start'
 				});}}>
 				Best Use of External Data
 			</Bookmark>
-			<Bookmark progress={this.calculatePercent($("#gallery")[0], 1)} onSelect={p => {this.setState({ progress: p});
+			<Bookmark progress={this.calculatePercent($("#gallery")[0], 1)} onSelect={p => {
 				document.querySelector('#gallery').scrollIntoView({
 					behavior: 'smooth',
 					block: 'start'

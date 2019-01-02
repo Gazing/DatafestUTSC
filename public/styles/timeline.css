@@ -3,6 +3,7 @@
 	position: relative;
 	height: 180px;
 	z-index: 1;
+	display: none;
 }
 
 .timeline-block .timeline-line {
@@ -66,7 +67,7 @@ div.timeline-bookmark::before {
 	width: 12px;
 	border-radius: 50%;
     background-color: #fff;
-	box-shadow: 0 0 0 3px #A8DADC, 0 3px 0 3px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 0 0 5px #A8DADC, 0 3px 0 3px rgba(0, 0, 0, 0.05);
 	transition: all .2s ease-in-out;
 	cursor: pointer;
 }

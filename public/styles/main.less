@@ -236,7 +236,7 @@ a, a:focus, a:hover {
   padding: 20px;
   font-size: 18px;
   font-weight: 600;	  
-  color: #F1FAEE;
+  color: #fff;
   background-color: #546A7B
 }
 
@@ -707,7 +707,7 @@ a, a:focus, a:hover {
 
 .prize-block {
   height: 75px;
-  
+  width: 333px;
 }
 
 .prize-art {
@@ -747,7 +747,6 @@ a, a:focus, a:hover {
 
 #awards>header {
   padding-top: 100px;
-  padding-bottom: 0;
 }
 
 #gallery>header {
@@ -760,7 +759,7 @@ a, a:focus, a:hover {
 }
 
 .award-container {
-  height: 100vh;
+	margin: 30px 0;
   
   
 }
@@ -781,9 +780,9 @@ a, a:focus, a:hover {
 .award-wrapper {
   width: 100%;
   display: flex;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  //position: absolute;
+  //top: 50%;
+  //transform: translateY(-50%);
 }
 
 .award-wrapper .body {
@@ -842,7 +841,7 @@ a, a:focus, a:hover {
 }
 
 .section4 {
-  height: 100vh;
+
 }
 
 #schedule {
@@ -901,6 +900,81 @@ a, a:focus, a:hover {
   padding-top: 120px;
 }
 
+.body h1,h2,h3,h4,h5,h6 {
+  color: #414141;
+  font-weight: 600;
+}
+
+#FAQ .body {
+  color: #546A7B;
+}
+
+#FAQ {
+	margin: auto;
+	padding: 120px 0 0 0;
+}
+
+ol {
+  padding-left: 50px;
+}
+
+.mobile-menu {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDI0IDI0IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAyNCIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KICA8Zz4KICAgIDxwYXRoIGQ9Ik0yNCwzYzAtMC42LTAuNC0xLTEtMUgxQzAuNCwyLDAsMi40LDAsM3YyYzAsMC42LDAuNCwxLDEsMWgyMmMwLjYsMCwxLTAuNCwxLTFWM3oiIGZpbGw9IiNGRkZGRkYiLz4KICAgIDxwYXRoIGQ9Ik0yNCwxMWMwLTAuNi0wLjQtMS0xLTFIMWMtMC42LDAtMSwwLjQtMSwxdjJjMCwwLjYsMC40LDEsMSwxaDIyYzAuNiwwLDEtMC40LDEtMVYxMXoiIGZpbGw9IiNGRkZGRkYiLz4KICAgIDxwYXRoIGQ9Ik0yNCwxOWMwLTAuNi0wLjQtMS0xLTFIMWMtMC42LDAtMSwwLjQtMSwxdjJjMCwwLjYsMC40LDEsMSwxaDIyYzAuNiwwLDEtMC40LDEtMVYxOXoiIGZpbGw9IiNGRkZGRkYiLz4KICA8L2c+Cjwvc3ZnPgo=);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  float: right;
+  font-size: 14px;
+  text-align: left;
+  width: 30px;
+  height: 30px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  transition: all 0.3s linear;
+  position: relative;
+  z-index: 11;
+  margin-top: 5px;
+}
+
+@media (min-width: 0px) and (max-width: 850px){
+  .asa-logo {
+	width: 300px;
+	height: 120px;
+  }
+  
+  .splash-bg {
+	width: 200vh;
+	height: 200vh;
+	
+  }
+  
+  .bg-wrapper {
+	width: 100vw;
+	height: auto;
+  }
+  
+  .prize-view {
+	display: block;
+	margin: auto;
+	width: max-content;
+  }
+  
+  .prize-view .prize-item {
+	margin: 30px 0 100px 0;
+
+  }
+  .bg-wrapper {
+	top: auto !important;
+  }
+}
+
+@media (min-width: 851px) and (max-width: 1000px) {
+  .prize-view .prize-item .prize-block {
+	width: 250px;
+  }
+}
+
+
 @media (min-width: 768px){
   
   .register-wrapper {
@@ -913,9 +987,11 @@ a, a:focus, a:hover {
   }
   
   .bg-wrapper {
-	top: 45%;
+	top: 55%;
   }
+  
 }
+
 @media (min-width: 992px){
   
   .register-wrapper {
