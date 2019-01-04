@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Actions from "./Actions";
 import { Timeline, Bookmark } from 'react-vertical-timeline';
 import FrontPage from "./FrontPage";
+let Spinner = require('react-spinkit');
 let marked = require("marked");
 
 class PastEventsPage extends Component {
@@ -47,9 +48,11 @@ class PastEventsPage extends Component {
 
 class LoadingAnimation extends Component {
 	render() {
-		return <div>
-			LOADING...
-		</div>;
+		return <div className="loader-wrapper">
+				<div className="loading-animation-1">
+					<Spinner name="cube-grid" color="#546A7B"/>
+				</div>
+			</div>;
 	}
 }
 

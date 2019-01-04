@@ -192,8 +192,17 @@ module.exports = {
           // tags. If you use code splitting, however, any async bundles will still
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
+			{
+				test: /\.css$/,
+				include: /node_modules/,
+				loaders: [
+					'style-loader',
+					'css-loader'
+				]
+			},
           {
             test: /\.css$/,
+			  include: /src/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
