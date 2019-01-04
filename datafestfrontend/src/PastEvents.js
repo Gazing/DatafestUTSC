@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-	BrowserRouter as Router,
-	Route
-} from 'react-router-dom';
 import Actions from "./Actions";
 import { Timeline, Bookmark } from 'react-vertical-timeline';
-import { HashLink as Link } from 'react-router-hash-link'
-import FrontPage from "./FrontPage"
+import FrontPage from "./FrontPage";
+let marked = require("marked");
 
 class PastEventsPage extends Component {
 	
@@ -22,14 +17,14 @@ class PastEventsPage extends Component {
 	
 	componentDidMount() {
 		Actions.getPastEvent(this.props.match.params.name, function (err, result) {
-			console.log(result);
+			
 			this.setState({data: result, loading: false});
 		}.bind(this));
 	}
 	
 	render() {
 		return <div>
-			<NavBar />
+			<FrontPage.NavBarBasic animationDisabled={true} opaque={true} useAnchor={true}/>
 			<div className="container event-wrapper">
 				{
 					this.state.loading ? <LoadingAnimation/> : 
@@ -175,8 +170,7 @@ class Introduction extends Component {
 	render() {
 		return <section id="introduction">
 				<header>{this.props.data.header}</header>
-				<div className="body">
-					{this.props.data.body}
+				<div className="body" dangerouslySetInnerHTML={{__html: marked(this.props.data.body)}}>
 				</div>
 				
 			</section>;

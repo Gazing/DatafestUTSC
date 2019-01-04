@@ -6,7 +6,7 @@ import {
 	BrowserRouter as Router,
 	Route
 } from 'react-router-dom';
-var marked = require("marked");
+let marked = require("marked");
 
 class FrontPage extends Component {
 	render() {
@@ -52,33 +52,118 @@ class NavBarBasic extends Component {
 	}
 	
 	onWindowScroll() {
+		if (this.props.animationDisabled) return;
 		this.setState({opaque: (window.scrollY > 0)});
 	}
 
 	render() {
 		return <ScrollWrapper onWindowScroll={this.onWindowScroll.bind(this)}>
 			<div className={"banner container-fluid"+(this.state.opaque ? " banner-colored" : "")}>
-					<Link to="/" className="logo">
+					<a href="/" className="logo">
 						DataFest @ UTSC
-					</Link>
-					<div className="mobile-menu d-lg-none">
-					</div>
+					</a>
+					<MobileNavMenu useAnchor={this.props.useAnchor} />
 					<ul className="nav navbar-right d-none d-lg-flex">
-						<AnimatedShortcut link="/#about" name="About" activeStart={0.36} activeEnd={0.74}/>
+						<AnimatedShortcut link="/#about" name="About" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} />
 
-						<AnimatedShortcut link="/#schedule" name="Schedule" activeStart={0.75} activeEnd={1}/>
+						<AnimatedShortcut link="/#schedule" name="Schedule" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} />
 						
-						<AnimatedShortcut link="/#sponsors" name="Sponsors" activeStart={1} activeEnd={1.3}/>
+						<AnimatedShortcut link="/#sponsors" name="Sponsors" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} />
 
-						<AnimatedShortcut link="/#workshops" name="Workshops" activeStart={1} activeEnd={1.3}/>
+						<AnimatedShortcut link="/#workshops" name="Workshops" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} />
 						
-						<AnimatedShortcut link="/#FAQ" name="FAQ" activeStart={1} activeEnd={1.3}/>
+						<AnimatedShortcut link="/#FAQ" name="FAQ" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} />
 		
 						<PastEventsDropDown />
 					</ul>
 			
 			</div>
 		</ScrollWrapper>
+	}
+}
+
+class MobileNavMenu extends Component {
+	constructor() {
+		super();
+		this.state = {
+			hideMenu: true,
+			menuActive: null,
+		};
+		this.menuStack = [];
+	}
+	
+	onClick() {
+		this.setState({hideMenu: !this.state.hideMenu});
+	}
+	
+	onChangeMenu(menu) {
+		this.menuStack.push(this.state.menuActive);
+		this.setState({menuActive: menu});
+	}
+	
+	onBack() {
+		this.setState({menuActive: this.menuStack.pop()});
+	}
+	
+	itemOnClick() {
+		this.setState({hideMenu: true});
+	}
+	
+	componentDidMount() {
+		this.setState({menuActive: <MobileMenuMain useAnchor={this.props.useAnchor} onBack={this.onBack.bind(this)} onChangeMenu={this.onChangeMenu.bind(this)} itemOnClick={this.itemOnClick.bind(this)} />}) ;
+	}
+	
+	render() {
+		return <div>
+			<nav className={"mobile-nav d-lg-none "+(this.state.hideMenu ? "" : "menu-active")}>
+				{this.state.menuActive}
+			</nav>
+			<div className="mobile-menu d-lg-none" onClick={() => { this.onClick() }}>
+			</div>
+			
+		</div>;
+	}
+}
+
+class MobileMenuMain extends Component {
+
+	constructor() {
+		super();
+	}
+	
+	render() {
+		return <ul className="menu-list">
+			<header>Menu</header>
+			<AnimatedShortcut link="/#about" name="About" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} onClick={this.props.itemOnClick}/>
+
+			<AnimatedShortcut link="/#schedule" name="Schedule" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} onClick={this.props.itemOnClick}/>
+
+			<AnimatedShortcut link="/#sponsors" name="Sponsors" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} onClick={this.props.itemOnClick}/>
+
+			<AnimatedShortcut link="/#workshops" name="Workshops" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} onClick={this.props.itemOnClick}/>
+
+			<AnimatedShortcut link="/#FAQ" name="FAQ" useAnchor={this.props.useAnchor} animationDisabled={this.props.animationDisabled} onClick={this.props.itemOnClick}/>
+			
+			<MobileMenuTab text="Past Events" menu={MobileMenuPastEvents} onBack={this.props.onBack} onChangeMenu={this.props.onChangeMenu}/>
+		</ul>;
+	}
+}
+
+
+
+class MobileMenuTab extends Component {
+	
+	constructor() {
+		super();
+		this.state = {
+			active: false
+		}
+	}
+	
+	render() {
+		return <li onClick={() => {this.props.onChangeMenu(<this.props.menu onBack={this.props.onBack}/>)}}>
+			{this.props.text}
+		</li>;
 	}
 }
 
@@ -112,6 +197,28 @@ class PastEventsDropDown extends Component {
 	}
 }
 
+class MobileMenuPastEvents extends PastEventsDropDown {
+
+	constructor() {
+		super();
+	}
+
+	render() {
+		return <ul className="menu-list">
+			
+			<header>Past Events</header>
+			<div className="back-button-mobile" onClick={this.props.onBack}>Back</div>
+			{this.state.pastEvents.map(function (item) {
+				return <li>
+					<a href={"/past-events/"+item.title.replace(" ", "-")}>
+						{item.title}
+					</a>
+				</li>
+			})}
+		</ul>;
+	}
+}
+
 class ScrollWrapper extends Component {
 
 	render () {
@@ -140,19 +247,28 @@ class AnimatedShortcut extends Component {
 		this.state = {
 			active: false
 		};
+		this.targetElement = null;
+	}
+	
+	componentDidMount() {
+		
+		this.targetElement = $(this.props.link.substring(1, this.props.link.length))[0];
+		this.onWindowScroll();
 	}
 
 	render() {
-		return <li>
+		return <li onClick={this.props.onClick}>
 			<ScrollWrapper onWindowScroll={this.onWindowScroll.bind(this)}>
-				<Link smooth to={this.props.link} className={this.state.active ? "nav-active" : ""}> {this.props.name} </Link>
+				{this.props.useAnchor ? <a href={this.props.link} className={this.state.active ? "nav-active" : ""}> {this.props.name} </a> :
+					<Link smooth to={this.props.link} className={this.state.active ? "nav-active" : ""}> {this.props.name} </Link>}
 			</ScrollWrapper>
 		</li>
 	}
 
 	onWindowScroll(event) {
-		let percent = scrollPercent();
-		if (percent >= this.props.activeStart && percent < this.props.activeEnd)
+		if (this.props.animationDisabled || !this.targetElement) return;
+		let rect = this.targetElement.getBoundingClientRect();
+		if (rect.bottom > 120 && rect.top < 120)
 			this.setState({active: true});
 		else this.setState({active: false});
 		
@@ -160,10 +276,10 @@ class AnimatedShortcut extends Component {
 }
 
 AnimatedShortcut.propTypes = {
-	activeStart: PropTypes.number.isRequired,
-	activeEnd: PropTypes.number.isRequired,
+	activeStart: PropTypes.number,
+	activeEnd: PropTypes.number,
 	name: PropTypes.string.isRequired,
-	link: PropTypes.string.isRequired
+	link: PropTypes.string.isRequired,
 };
 
 

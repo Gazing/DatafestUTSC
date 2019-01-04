@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import 'react-dropdown/style.css'
 import FrontPage from "./FrontPage";
 import Dropdown from 'react-dropdown'
@@ -189,10 +188,6 @@ class RegistrationForm extends Component {
 	}
 }
 
-class TeamMemberInputs extends Component {
-	
-}
-
 class InputWrapper extends Component {
 	
 	constructor() {
@@ -281,8 +276,5 @@ class CampusInput extends DropDownWrapper {
 	}
 }
 
-class EmailInput extends Component {
-	
-}
 
 export default Registration;
