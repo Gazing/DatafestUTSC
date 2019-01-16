@@ -17,13 +17,14 @@ class PastEventsPage extends Component {
 		
 		this.state = {
 			data: null,
+			err: null,
 			loading: true
 		}
 	}
 	
 	componentDidMount() {
 		Actions.getPastEvent(this.props.match.params.name, function (err, result) {
-			
+			if (err) return this.setState({err: err, loading: false});
 			this.setState({data: result, loading: false});
 		}.bind(this));
 	}
@@ -32,8 +33,9 @@ class PastEventsPage extends Component {
 		return <div>
 			<FrontPage.NavBarBasic animationDisabled={true} opaque={true} useAnchor={true}/>
 			<div className="container event-wrapper">
-				{
-					this.state.loading ? <LoadingAnimation/> : 
+				{this.state.err ? <div className="error-404"> Past event not found </div> :
+				
+					(this.state.loading ? <LoadingAnimation/> : 
 										<div className="post-wrapper">
 											
 											<div className="post-container">
@@ -43,6 +45,7 @@ class PastEventsPage extends Component {
 												<Sponsors sponsors={this.state.data.sponsors} />
 											</div>
 										</div>
+					)
 				}
 			</div>
 		</div>;

@@ -43,6 +43,7 @@ exports = module.exports = {
 		PastEvent.model.findOne({title: eventName})
 			.exec()
 			.then(function (pastEvent) {
+				if (!pastEvent) return res.status(404).json({status: 404, message: "Past Event '"+ eventName + "' does not exist"});
 				let intro = {};
 				intro.header = pastEvent.header;
 				intro.body = pastEvent.body;
@@ -75,7 +76,7 @@ exports = module.exports = {
 				data.sponsors = sponsors;
 				
 				res.json(data);
-			})
+			});
 		
 	}
 };

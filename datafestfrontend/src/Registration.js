@@ -43,6 +43,10 @@ class RegistrationWrapper extends Component {
 	
 }
 
+
+/**
+ * Renders the success message for the registration form
+ */
 class SuccessView extends Component {
 	constructor() {
 		super();
@@ -79,6 +83,9 @@ class SuccessView extends Component {
 	}
 }
 
+/**
+ * Renders the registration form using special input components
+ */
 class RegistrationForm extends Component {
 	
 	constructor() {
@@ -99,6 +106,7 @@ class RegistrationForm extends Component {
 	componentDidMount() {
 		let tms = {};
 		let teamSize = parseInt(window.datafest.snippets.maxTeamSize);
+		// Initializes the team members form
 		for (let i = 0; i < teamSize; i++) {
 			let tm = {
 				firstName: null,
@@ -174,7 +182,7 @@ class RegistrationForm extends Component {
 											<TextInput label="First Name" required={isRequired} onInput={this.inputOnChange(name, "firstName")} />
 											<TextInput label="Last Name" required={isRequired} onInput={this.inputOnChange(name, "lastName")} />
 											<YearInput label="Year of Study" required={isRequired} onInput={this.inputOnChange(name, "year")} />
-											<ProgramInput label="Program" required={isRequired} onInput={this.inputOnChange(name, "program")} />
+											<TextInput label="Program" required={isRequired} onInput={this.inputOnChange(name, "program")} />
 											<CampusInput label="Campus" required={isRequired} onInput={this.inputOnChange(name, "campus")} />
 										</div>
 								</div>

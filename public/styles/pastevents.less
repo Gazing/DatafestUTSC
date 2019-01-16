@@ -1,4 +1,4 @@
-@normal-text-color: #414141;
+@text-color: #414141;
 
 // Primary palette
 @dark-gunmetal: #0D1F2D;
@@ -47,7 +47,7 @@
   width: calc(~"100% - 724px");
   padding: 20px 30px;
   display: block;
-  color: #414141;
+  color: @text-color;
   border: 1px solid #e0e0e0;
   border-left: 0;
   box-shadow:0 1px 3px rgba(0,0,0,.1);
@@ -171,4 +171,13 @@
 .sk-cube-grid {
   width: 54px !important;
   height: 54px !important;
+}
+
+.error-404 {
+  font-weight: 600;
+  color: #707070;
+  margin: auto;
+  padding: 100px;
+  width: max-content;
+  font-size: 25px;
 }
