@@ -8,6 +8,9 @@ import {
 } from 'react-router-dom';
 let marked = require("marked");
 
+/**
+ * FrontPage router component
+ */
 class FrontPage extends Component {
 	render() {
 		return <div>
@@ -18,6 +21,11 @@ class FrontPage extends Component {
 	}
 }
 
+/**
+ * Main Page of Datafest site
+ * 
+ * Sections can be added here for the main page
+ */
 class MainPage extends Component {
 	render() {
 		return <div className="section-wrapper">
@@ -37,6 +45,11 @@ class MainPage extends Component {
 	}
 }
 
+/**
+ * NavBar Component
+ * 
+ * Renders the NavBar with all the shortcuts, as well as the mobile menu
+ */
 class NavBarBasic extends Component {
 
 	constructor() {
@@ -82,6 +95,11 @@ class NavBarBasic extends Component {
 	}
 }
 
+
+/**
+ * Renders the mobile version of the Navigation Menu
+ * Allows submenus be rendered using MobileMenuTab
+ */
 class MobileNavMenu extends Component {
 	constructor() {
 		super();
@@ -125,6 +143,9 @@ class MobileNavMenu extends Component {
 	}
 }
 
+/**
+ * Renders the main menu for the mobile version of the Navigation Menu
+ */
 class MobileMenuMain extends Component {
 
 	constructor() {
@@ -150,7 +171,9 @@ class MobileMenuMain extends Component {
 }
 
 
-
+/**
+ * Component for rendering submenus in the mobile menu
+ */
 class MobileMenuTab extends Component {
 	
 	constructor() {
@@ -167,6 +190,9 @@ class MobileMenuTab extends Component {
 	}
 }
 
+/**
+ * Renders the PastEvents shortcut and dropdown
+ */
 class PastEventsDropDown extends Component {
 	
 	constructor() {
@@ -182,7 +208,7 @@ class PastEventsDropDown extends Component {
 	}
 	
 	render() {
-		return <li className="dropdown">
+		return (this.state.pastEvents.length === 0) ? null : <li className="dropdown">
 			<a id="navbarDropdown" className="dropdown-toggle" href='' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 				Past Events
 			</a>
@@ -197,6 +223,9 @@ class PastEventsDropDown extends Component {
 	}
 }
 
+/**
+ * Renders the mobile version of the PastEvents shortcut
+ */
 class MobileMenuPastEvents extends PastEventsDropDown {
 
 	constructor() {
@@ -219,6 +248,9 @@ class MobileMenuPastEvents extends PastEventsDropDown {
 	}
 }
 
+/**
+ * Wrapper component used to attach scroll listeners to other components
+ */
 class ScrollWrapper extends Component {
 
 	render () {
@@ -234,13 +266,11 @@ class ScrollWrapper extends Component {
 	}
 }
 
-function scrollPercent() {
-	let height = 0.666 * document.scrollingElement.scrollHeight;
-	let scroll = window.scrollY;
 
-	return scroll / height;
-}
-
+/**
+ * Component that renders the shortcuts for the navbar/mobile nav menu
+ * Animation is done by linking to the target element and checking if it is in view
+ */
 class AnimatedShortcut extends Component {
 	constructor() {
 		super();
@@ -276,17 +306,15 @@ class AnimatedShortcut extends Component {
 }
 
 AnimatedShortcut.propTypes = {
-	activeStart: PropTypes.number,
-	activeEnd: PropTypes.number,
 	name: PropTypes.string.isRequired,
 	link: PropTypes.string.isRequired,
 };
 
-
+/**
+ * Renders the Splash screen for the website, background and animation.
+ * Acts as a wrapper for addition content such as logo, registration button, etc
+ */
 class SplashSection extends Component {
-
-
-
 
 	render() {
 		return <section className="section1">
@@ -297,6 +325,9 @@ class SplashSection extends Component {
 	}
 }
 
+/**
+ * Renders the logo, button, and date for the splash screen
+ */
 class SplashText extends Component {
 	
 	constructor() {
@@ -323,6 +354,9 @@ class SplashText extends Component {
 	}
 }
 
+/**
+ * Controls and renders the Splash animation
+ */
 class SplashAnimation extends Component {
 	constructor() {
 		super();
@@ -346,8 +380,6 @@ class SplashAnimation extends Component {
 }
 
 class AboutSection extends Component {
-
-
 
 	render() {
 		return <section id="about" className="section2">
@@ -444,9 +476,7 @@ class Prize extends Component {
 						<div className="prize-label">
 							{this.props.label}
 						</div>
-						<div className="prize-amount">
-							{"$"+this.props.amount}
-						</div>
+						
 					</div>
 
 			</div>

@@ -3,6 +3,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+Building the react frontend
+-----
+
+Run `npm run build` to build the frontend and copy the files to production.
+
+Watching
+-----
+
+Use `npm run watch` to start webpack in watch mode which will rebuild and copy each time a change is made to the source code.
+
 ## Table of Contents
 
 - [Updating to New Releases](#updating-to-new-releases)
