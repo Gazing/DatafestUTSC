@@ -10,19 +10,19 @@ var PastEvent = new keystone.List('PastEvent', {
 PastEvent.add({
 	title: { type: String, required: true, initial: true, index: true },
 	header: { type: String, required: true, initial: true },
-	body: { type: Types.Html, required: true, initial: true},
-	prize1Image: { type: Types.CloudinaryImage, initial: true},
-	prize1TeamName: { type: String, initial: true},
-	prize1Members: { type: Types.TextArray, initial: true},
-	prize2Image: { type: Types.CloudinaryImage, initial: true},
-	prize2TeamName: { type: String, initial: true},
-	prize2Members: { type: Types.TextArray, initial: true},
-	prize3Image: { type: Types.CloudinaryImage, initial: true},
-	prize3TeamName: { type: String, initial: true},
-	prize3Members: { type: Types.TextArray, initial: true},
-	galleryLink: { type: Types.Url, required: false, initial: true},
+	body: { type: Types.Html },
+	prize1Image: { type: Types.CloudinaryImage },
+	prize1TeamName: { type: String },
+	prize1Members: { type: Types.TextArray },
+	prize2Image: { type: Types.CloudinaryImage },
+	prize2TeamName: { type: String },
+	prize2Members: { type: Types.TextArray },
+	prize3Image: { type: Types.CloudinaryImage },
+	prize3TeamName: { type: String },
+	prize3Members: { type: Types.TextArray },
+	galleryLink: { type: Types.Url },
 	
-	sponsors: { type: Types.CloudinaryImages, required: false, initial: true},
+	sponsors: { type: Types.CloudinaryImages},
 	createdAt: { type: Date, default: Date.now }
 });
 

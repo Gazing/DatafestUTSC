@@ -10,5 +10,5 @@ Registration.add({
 	submittedAt: { type: Date, default: Date.now }
 });
 
-Registration.defaultColumns = 'teamName, email';
+Registration.defaultColumns = 'teamName, email, teamMembers';
 Registration.register();

@@ -214,7 +214,7 @@ class PastEventsDropDown extends Component {
 			</a>
 			<div className="dropdown-menu" aria-labelledby='navbarDropdown'>
 				{this.state.pastEvents.map(function (item) {
-					return <a className="dropdown-item" href={"/past-events/"+item.title.replace(" ", "-")}>
+					return <a className="dropdown-item" href={"/past-events/"+item.title.replace(/ /g, "-")}>
 						{item.title}
 					</a>
 				})}

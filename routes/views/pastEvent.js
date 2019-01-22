@@ -26,10 +26,12 @@ exports = module.exports = {
 				return Snippet.model.find().exec();
 			}).then(function (snippets) {
 
+			data.snippets = {};
 			snippets.forEach(function (snippet) {
-				data[snippet.name] = snippet.content;
+				data.snippets[snippet.name] = snippet.content;
 			});
 
+			data.title = req.params.name.replace(/-/g, " ");
 			view.render('pastEvent', data);
 
 		});
@@ -38,7 +40,7 @@ exports = module.exports = {
 
 	},
 	pastEventAPI: function (req, res) {
-		let eventName = req.params.name.replace("-", " ");
+		let eventName = req.params.name.replace(/-/g, " ");
 		
 		PastEvent.model.findOne({title: eventName})
 			.exec()
